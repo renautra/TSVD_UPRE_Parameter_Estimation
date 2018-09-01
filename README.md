@@ -3,31 +3,31 @@ ___
 
 This repository contains companion code for the paper _Convergence of Regularization Parameters for Solutions using the Filtered Truncated Singular Value Decomposition_ by Rosemary A. Renaut, Anthony Helmstetter, and Saeed Vatankhah.
 
-In solving the linear inverse problem $A x = b_\text{true} + \eta = b$ with $\eta \sim  \mathcal{N} (0, \sigma^2 I)$ via Tikhonov regularization of the form 
-$$ x^* = \underset{x}{\operatorname{argmin}} \{ \|A x - b \|^2 + \alpha^2 \| x \|\} $$
+In solving the linear inverse problem <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/044f89f24b56d6a92d85bbeeb2dbaa2d.svg?invert_in_darkmode" align=middle width=132.40524pt height=22.745910000000016pt/> with <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/e32a54c59d938cea1e05b1680c6e05f6.svg?invert_in_darkmode" align=middle width=100.47708pt height=26.70657pt/> via Tikhonov regularization of the form 
+<p align="center"><img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/110d77a7c108ca6631c06e207f210fde.svg?invert_in_darkmode" align=middle width=241.59629999999999pt height=27.234405pt/></p>
 
-this module may be used to provide an estimate $\alpha_k$ to the optimal $\alpha^*$ obtained by minimization of the Unbiased Predictive Risk Estimation (UPRE) functional. As opposed to explicitly computing $\alpha^*$ by minimizing the UPRE functional over the full SVD, this module will determine $\alpha_k \approx a^*$ by minimizing the UPRE functional over the TSVD of $A$ of size $k$ for increasing $k$, tracking the convergence properties of $\alpha_k$ as it does so, returning $k$ and $\alpha_k$ upon convergence. 
+this module may be used to provide an estimate <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/3cc1484752cc8ef69d55b6991e28be35.svg?invert_in_darkmode" align=middle width=17.715225pt height=14.102549999999994pt/> to the optimal <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/6e683168fc32b999b0dbfaad9651e655.svg?invert_in_darkmode" align=middle width=17.247285pt height=22.598730000000007pt/> obtained by minimization of the Unbiased Predictive Risk Estimation (UPRE) functional. As opposed to explicitly computing <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/6e683168fc32b999b0dbfaad9651e655.svg?invert_in_darkmode" align=middle width=17.247285pt height=22.598730000000007pt/> by minimizing the UPRE functional over the full SVD, this module will determine <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/71e0ec719b341c82d5fbc8176f1477c3.svg?invert_in_darkmode" align=middle width=55.80102pt height=22.598730000000007pt/> by minimizing the UPRE functional over the TSVD of <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.282765000000003pt height=22.381919999999983pt/> of size <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.041505pt height=22.745910000000016pt/> for increasing <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.041505pt height=22.745910000000016pt/>, tracking the convergence properties of <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/3cc1484752cc8ef69d55b6991e28be35.svg?invert_in_darkmode" align=middle width=17.715225pt height=14.102549999999994pt/> as it does so, returning <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.041505pt height=22.745910000000016pt/> and <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/3cc1484752cc8ef69d55b6991e28be35.svg?invert_in_darkmode" align=middle width=17.715225pt height=14.102549999999994pt/> upon convergence. 
 
  The python source ```tsvd_upre_param.py``` contains two functions  ```upre_trunc``` and ```tsvd_upre_parameter```.
 
 The function ```tsvd_trunc``` takes as input:
-- ```sigma```, the singular values of $A$
-- ```utbn```, the Picard coefficients $U^T b$
--  ```alpha```, scalar value $\alpha$
--  ```k```, index $k$
-- ```eta_var```, an estimate of the noise variance $\sigma^2$
+- ```sigma```, the singular values of <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.282765000000003pt height=22.381919999999983pt/>
+- ```utbn```, the Picard coefficients <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/8b50028c7b5c3e89a0a5fbcbace3c2ce.svg?invert_in_darkmode" align=middle width=30.35802pt height=27.598230000000008pt/>
+-  ```alpha```, scalar value <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/c745b9b57c145ec5577b82542b2df546.svg?invert_in_darkmode" align=middle width=10.537065000000004pt height=14.102549999999994pt/>
+-  ```k```, index <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.041505pt height=22.745910000000016pt/>
+- ```eta_var```, an estimate of the noise variance <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/e6718aa5499c31af3ff15c3c594a7854.svg?invert_in_darkmode" align=middle width=16.475910000000002pt height=26.70657pt/>
   
 and returns the UPRE function value for the given input. The function ```tsvd_upre_parameter``` takes as input:
-- ```sigma```, the singular values of $A$
-- ```utbn```, the Picard coefficients $U^T b$
-- ```eta_var```, an estimate of the noise variance $\sigma^2$
-- ```k_start```, a starting indexing for $k$
-- ```k_step```, a value by which to increment $k$
-- ```k_max```, a maximum allowable value for $k$
-- ```moving_avg_width```, the width of the moving window over which to compare relative changes in $\alpha_k$
+- ```sigma```, the singular values of <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/53d147e7f3fe6e47ee05b88b166bd3f6.svg?invert_in_darkmode" align=middle width=12.282765000000003pt height=22.381919999999983pt/>
+- ```utbn```, the Picard coefficients <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/8b50028c7b5c3e89a0a5fbcbace3c2ce.svg?invert_in_darkmode" align=middle width=30.35802pt height=27.598230000000008pt/>
+- ```eta_var```, an estimate of the noise variance <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/e6718aa5499c31af3ff15c3c594a7854.svg?invert_in_darkmode" align=middle width=16.475910000000002pt height=26.70657pt/>
+- ```k_start```, a starting indexing for <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.041505pt height=22.745910000000016pt/>
+- ```k_step```, a value by which to increment <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.041505pt height=22.745910000000016pt/>
+- ```k_max```, a maximum allowable value for <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.041505pt height=22.745910000000016pt/>
+- ```moving_avg_width```, the width of the moving window over which to compare relative changes in <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/3cc1484752cc8ef69d55b6991e28be35.svg?invert_in_darkmode" align=middle width=17.715225pt height=14.102549999999994pt/>
 - ```tol``` tolerance for convergence
-- (optional) ```ell``` to use in determining a lower bound over which to search for $\alpha_k$
+- (optional) ```ell``` to use in determining a lower bound over which to search for <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/3cc1484752cc8ef69d55b6991e28be35.svg?invert_in_darkmode" align=middle width=17.715225pt height=14.102549999999994pt/>
 
-and returns the optimal $k$ and $\alpha_k$ from which the solution $x$ can be computed. 
+and returns the optimal <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/63bb9849783d01d91403bc9a5fea12a2.svg?invert_in_darkmode" align=middle width=9.041505pt height=22.745910000000016pt/> and <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/3cc1484752cc8ef69d55b6991e28be35.svg?invert_in_darkmode" align=middle width=17.715225pt height=14.102549999999994pt/> from which the solution <img src="https://rawgit.com/renautra/TSVD_UPRE_Parameter_Estimation/master/svgs/332cc365a4987aacce0ead01b8bdcc0b.svg?invert_in_darkmode" align=middle width=9.359955000000003pt height=14.102549999999994pt/> can be computed. 
 
 A paper manuscript will soon be provided for algorithm details.
